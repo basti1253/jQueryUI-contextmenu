@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" />
+    <title>contextmenu demo</title>
+    <link rel="stylesheet" href="css/jqueryui.css" type="text/css" media="screen">
+    <style type="text/css">
+        .contextmenu {
+            position: fixed;
+            padding: 1em;
+            a {
+                padding: 1em;
+                color: #BF1C50;
+                .bold;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../ui/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="../ui/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="../ui/jquery.ui.position.js"></script>
+    <script type="text/javascript" src="../ui/jquery.ui.menu.js"></script>
+
+    <script type="text/javascript" src="../lib/dyn.contextmenu.js"></script>
+    <script type="text/javascript">
+        window.log = function () {
+            var args = Array.prototype.slice.call( arguments );
+            log.history = log.history || [];
+            log.history.push( arguments );
+            if( !this.console ) {
+                return;
+            }
+            if( arguments.callee.caller && $.browser.mozilla ) {
+                console.info( "called from function:", arguments.callee.caller );
+            }
+            if( !this.console.log ) {
+                $.each( args, function (k, v) {
+                    console.debug( v );
+                }); 
+            }
+            $.each( args, function (k, v) {
+                console.log( v );
+            });
+        };
+        
+        $(function () {
+            $( window ).contextmenu({
+                'menu' : $( "#test" )
+            });
+            $( '#menudocu' ).contextmenu({
+                'menu' : $( "#documenu" )
+            });
+        });
+    </script>
+   
+</head>
+    <div style="width: 100%; height: 100%;">
+        <h1>jQueryUI contextmenu demo</h1>
+        <div id="menudocu">
+            <h2>short description</h2>
+            <p>
+                Provides a simple wrapper for jQueryUI's menu (Please check documentation if you want to learn more on menus events).
+                If you take care yourself bout the menu bindings this simple widget doesn't touch your menu layer.
+            </p>
+        </div>
+        <div>
+            <h2>options</h2>
+            <ul>
+                <li>pageX / pageY [ default 0 ]
+                    <p>use that if you call open yourself</p>
+                </li>
+                <li>forceUrlHandling [ default true ]
+                    <p>
+                        As the menu currently prevents anchor clicks you should keep that activate that option if you want urls to be loaded. In that case an url has to start with http.
+                        <em>this option will be removed</em>
+                    </p>
+                </li>
+                <li>menu [ jQuery object of domnode ]</li>
+                <li>menuOptions [default null; uses defaults if you don't provide anything]</li>
+                <li>position [ position rendering of contextmenu]</li>
+            </ul>
+        </div>
+        <div>
+            <h2>custom events</h2>
+            <ul>
+                <li>before</li>
+                <li>open</li>
+                <li>close</li>
+            </ul>
+        </div>
+        <div>
+            <h2>public methods</h2>
+            <ul>
+                <li>open</li>
+                <li>close</li>
+                <li>closeall</li>
+            </ul>
+        </div>
+    </div>
+    <ul id="test">
+        <li><a href="http://jquery.com">jQuery</a></li>
+        <li><a href="http://jqueryui.com">jQueryUI</a></li>
+        <li><a href="https://github.com/basti1253/jQueryUI-contextmenu">Back to github</a></li>
+        <li><a href="javascript:;">do nothing on click</a></li>
+    </ul>
+    <ul id="documenu">
+        <li><a href="http://docs.jquery.com/UI/Menu">check out jQueryUI menu documentation</a></li>
+        <li><a href="javascript:;">do nothing on click</a></li>
+    </ul>
+</body>
+</html>
+
