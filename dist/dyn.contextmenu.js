@@ -2,7 +2,6 @@
  * jQuery UI ContextMenu
  *
  * Copyright 2011, Sebastian Sauer info@dynpages.de
- * Version 0.3
  *
  * Dual licensed under the MIT or GPL Version 2 licenses.
  *
@@ -81,13 +80,23 @@ $.widget( "dyn.contextmenu", {
 			.hide();
 
 		if( !menu.data( "menu" ) ) {
-			menu.menu( o.menuOptions )
+			menu.menu( o.menuOptions );
 		}
 
 		this._registerContextMenu();
 
-		this._addFakeLayer();
+		this._zIndex = menu.css( "z-Index" );
 
+		if( !this._zIndex || ( /\D/ ).test( this._zIndex ) ) {
+			if( console && console.log ) {
+				console.log( "please provide a z-index for contextmenu. Destroying instance." );
+			}
+			this.destroy();
+			return;
+		}
+		this._zIndex = parseInt( this._zIndex, 10 );
+
+		this._addFakeLayer();
 		this._bind( this._fakeLayer, {
 			click : "closeAll"
 		});
@@ -117,7 +126,9 @@ $.widget( "dyn.contextmenu", {
 		}
 		this.closeAll();
 
-		this._fakeLayer.removeClass( "ui-helper-hidden" );
+		this._fakeLayer
+			.removeClass( "ui-helper-hidden" )
+			.css( "z-Index", this._zIndex );
 
 		if( ev ) {
 			if ( ev.preventDefault ) {
@@ -151,7 +162,7 @@ $.widget( "dyn.contextmenu", {
 			ev.type = "contextmenuclose";
 		}
 		if( this._fakeLayer.is( ":visible" ) ) {
-			this._fakeLayer.addClass( "ui-helper-hidden" );
+			this._hideFakeLayer();
 		}
 
 		this._trigger( "close", ev || null, this._ui() );
@@ -167,11 +178,15 @@ $.widget( "dyn.contextmenu", {
 		}
 		if( layer.length < 1 ) {
 			layer = $( "<div />" )
-				.addClass( fakeLayerClass + " ui-helper-hidden" );
+				.addClass( fakeLayerClass );
 			$body.append( layer );
 		}
-
 		this._fakeLayer = layer;
+	},
+	_hideFakeLayer : function () {
+		this._fakeLayer
+			.addClass( "ui-helper-hidden" )
+			.css( "z-Index", "" + -1e6 );
 	},
 	destroy : function () {
 		var ns = "." + this.widgetName;
