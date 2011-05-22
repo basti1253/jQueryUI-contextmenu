@@ -94,7 +94,7 @@ $.widget( "dyn.contextmenu", {
 			this.destroy();
 			return;
 		}
-		this._zIndex = parseInt( this._zIndex, 10 );
+		this._zIndex = parseInt( this._zIndex, 10 ) - 1;
 
 		this._addFakeLayer();
 		this._bind( this._fakeLayer, {
