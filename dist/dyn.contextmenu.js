@@ -2,6 +2,7 @@
  * jQuery UI ContextMenu
  *
  * Copyright 2011, Sebastian Sauer info@dynpages.de
+ * Version 0.3
  *
  * Dual licensed under the MIT or GPL Version 2 licenses.
  *

@@ -1,14 +1,10 @@
 <?xml version="1.0"?>
-<project name="imgpreview" default="build" basedir="../">
+<project name="contextmenu" default="build" basedir="../">
 
     <property file="build/default.properties"/>
 
     <!-- uglifyjs - minify js -->
     <target name="minify" >
-        <echo message="Concat source files..."/>
-        <concat destfile="${dist.js}">
-            <filelist dir="." files="${src.files}"/>
-        </concat>
         <echo message="minifying ..."/>
         <basename property="js.basename" file="${dist.js}" suffix=".js" />
         <exec executable="${tools.jscompressor}" failonerror="true">
@@ -18,6 +14,11 @@
     </target>
 
     <target name="build">
+        <exec executable="rsync" dir="." failonerror="true">
+        	<arg value="-auz" />
+        	<arg line="${src.dir}/"/>
+        	<arg line="${dist.root}"/>
+        </exec>
         <antcall target="minify" />
     </target>
 </project>

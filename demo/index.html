@@ -3,24 +3,17 @@
 <head>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" />
     <title>contextmenu demo</title>
-    <link rel="stylesheet" href="css/jqueryui.css" type="text/css" media="screen">
-    <style type="text/css">
-        .contextmenu {
-            position: fixed;
-            padding: 1em;
-            a {
-                padding: 1em;
-                color: #BF1C50;
-            }
-        }
-    </style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <script type="text/javascript" src="../ui/jquery.ui.core.js"></script>
-    <script type="text/javascript" src="../ui/jquery.ui.widget.js"></script>
-    <script type="text/javascript" src="../ui/jquery.ui.position.js"></script>
-    <script type="text/javascript" src="../ui/jquery.ui.menu.js"></script>
 
-    <script type="text/javascript" src="../lib/dyn.contextmenu.js"></script>
+    <link rel="stylesheet" href="../lib/jquery-ui/themes/base/jquery.ui.all.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../src/dyn.contextmenu.css" type="text/css" media="screen">
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui/ui/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui/ui/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui/ui/jquery.ui.position.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui/ui/jquery.ui.menu.js"></script>
+
+    <script type="text/javascript" src="../src/dyn.contextmenu.js"></script>
     <script type="text/javascript">
         window.log = function () {
             var args = Array.prototype.slice.call( arguments );
@@ -35,13 +28,13 @@
             if( !this.console.log ) {
                 $.each( args, function (k, v) {
                     console.debug( v );
-                }); 
+                });
             }
             $.each( args, function (k, v) {
                 console.log( v );
             });
         };
-        
+
         $(function () {
             $( window ).contextmenu({
                 'menu' : $( "#test" )
@@ -51,7 +44,7 @@
             });
         });
     </script>
-   
+
 </head>
     <div style="width: 100%; height: 100%;">
         <h1>jQueryUI contextmenu demo</h1>
@@ -68,9 +61,9 @@
                 <li>pageX / pageY [ default 0 ]
                     <p>use that if you call open yourself</p>
                 </li>
-                <li>forceUrlHandling [ default true ]
+                <li><s>forceUrlHandling [ default true ]</s>
                     <p>
-                        As the menu currently prevents anchor clicks you should keep that activated if you want urls to be loaded. In that case an url has to start with http.
+                        <s>As the menu currently prevents anchor clicks you should keep that activated if you want urls to be loaded. In that case an url has to start with http.</s>
                     </p>
                 </li>
                 <li>menu [ jQuery object of domnode ]</li>
@@ -105,4 +98,3 @@
     </ul>
 </body>
 </html>
-
