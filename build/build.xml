@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<project name="imgpreview" default="build" basedir="../">
+
+    <property file="build/default.properties"/>
+
+    <!-- uglifyjs - minify js -->
+    <target name="minify" >
+        <echo message="Concat source files..."/>
+        <concat destfile="${dist.js}">
+            <filelist dir="." files="${src.files}"/>
+        </concat>
+        <echo message="minifying ..."/>
+        <basename property="js.basename" file="${dist.js}" suffix=".js" />
+        <exec executable="${tools.jscompressor}" failonerror="true">
+            <arg line="--output ${dist.root}/${js.basename}.min.js" />
+            <arg line="${dist.js}"/>
+        </exec>
+    </target>
+
+    <target name="build">
+        <antcall target="minify" />
+    </target>
+</project>
