@@ -4,12 +4,12 @@ h2. changelog for 0.9
 
 * removed forceUrlHandling from options (ty jqueryui - link clicks don't get treated anymore by event preventDefault )
 * provide an extra css file
-* added a fakelayer so contextmenu feels more consistend (doesn't close on blur anymore)
+* added a fakelayer so contextmenu feels more consistent (doesn't close on blur anymore)
 * changed collision detection
 * "mini" build tool (requires uglifyjs) => npm install -g uglifyjs-js
 * added jQueryUI as a submodule
 
-h2. clone with copy and paste instruction:
+h2. clone by copy and paste instruction:
 
 p. git clone --recursive git://github.com/basti1253/jQueryUI-contextmenu.git
 
