@@ -7,7 +7,7 @@ p. Provides a simple wrapper for jQueryUI's menu (Please check "menu documentati
 h2. options
 
 * pageX / pageY [ default 0 ] - use that if you call open yourself
-* forceUrlHandling [ default true ] - As the menu currently prevents anchor clicks you should keep that activated if you want urls to be loaded. In that case an url has to start with http.
+* -forceUrlHandling [ default true ] - As the menu currently prevents anchor clicks you should keep that activated if you want urls to be loaded. In that case an url has to start with http.
 * menu - jQuery object of domnode
 * menuOptions [default null] - uses defaults if you don't provide anything
 * position - position rendering of contextmenu
@@ -17,7 +17,7 @@ h2. custom events
 * before
 * open
 * close
-    
+
 h2. public methods
 
 * open
