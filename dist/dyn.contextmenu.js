@@ -121,7 +121,9 @@ $.widget( "dyn.contextmenu", {
 			menu = this.menulayer,
 			posO;
 
-		if ( false === this._trigger( "before", ev || null, this._ui() ) ) {
+		if ( false === this._trigger( "before", ev || null, this._ui() )
+			|| o.disabled
+		) {
 			return;
 		}
 		this.closeAll();
