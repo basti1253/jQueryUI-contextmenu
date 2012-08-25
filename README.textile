@@ -1,5 +1,11 @@
 h1. jQueryUI contextmenu
 
+h2. changelog for 1.0-beta1
+
+* switched to jQueryUI 1.8
+* fixed $(window).contextmenu related bugs
+* fixed fakeLayer: always provide a jQuery element
+
 h2. changelog for 0.9
 
 * removed forceUrlHandling from options (ty jqueryui - link clicks don't get treated anymore by event preventDefault )
