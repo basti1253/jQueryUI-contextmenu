@@ -79,7 +79,7 @@ $.widget( "dyn.contextmenu", {
 			.addClass( this.widgetName )
 			.hide();
 
-		if( !menu.data( "menu" ) ) {
+		if( ! menu.data( "menu" ) ) {
 			menu.menu( o.menuOptions );
 		}
 
@@ -87,7 +87,7 @@ $.widget( "dyn.contextmenu", {
 
 		this._zIndex = menu.css( "z-Index" );
 
-		if( !this._zIndex || ( /\D/ ).test( this._zIndex ) ) {
+		if( ! this._zIndex || ( /\D/ ).test( this._zIndex ) ) {
 			if( console && console.log ) {
 				console.log( "please provide a z-index for contextmenu. Destroying instance." );
 			}
@@ -97,7 +97,7 @@ $.widget( "dyn.contextmenu", {
 		this._zIndex = parseInt( this._zIndex, 10 ) - 1;
 
 		this._addFakeLayer();
-		this._bind( this._fakeLayer, {
+		this._on( this._fakeLayer, {
 			click : "closeAll"
 		});
     },
@@ -107,7 +107,7 @@ $.widget( "dyn.contextmenu", {
 			? $( document )
 			: this.element;
 
-		this._bind( el, {
+		this._on( el, {
 			contextmenu : "open"
 		});
 	},
@@ -133,10 +133,8 @@ $.widget( "dyn.contextmenu", {
 			.css( "z-Index", this._zIndex );
 
 		if( ev ) {
-			if ( ev.preventDefault ) {
-				ev.preventDefault();
-				ev.stopImmediatePropagation();
-			}
+			ev.preventDefault();
+
 			posO = $.extend( o.position, {
 				of: ev
 			});
@@ -152,11 +150,17 @@ $.widget( "dyn.contextmenu", {
 		this._trigger( "open", ev || null, this._ui() );
 	},
 	closeAll : function () {
+
 		// explicitly call close for $(window).contextmenu (no pseudo selector catch)
-		if( this._isWindow ) {
-			this.close();
+		var $window = $( window );
+		if( $.isFunction( $window.contextmenu ) ) {
+			$window.contextmenu( "close" );
 		}
-		$( ":dyn-contextmenu" ).contextmenu( "close" );
+
+		$( ":dyn-contextmenu" ).each(function () {
+			$( this ).contextmenu( "close" );
+		});
+
 	},
 	close : function ( ev ) {
 		this.menulayer.hide();
@@ -176,6 +180,7 @@ $.widget( "dyn.contextmenu", {
 			$body = $( "body" );
 
 		if( $body.length < 1 ) {
+			this._fakeLayer = $();
 			return;
 		}
 		if( layer.length < 1 ) {
@@ -199,7 +204,7 @@ $.widget( "dyn.contextmenu", {
 			.removeClass( this.widgetName )
 			.menu( "destroy" );
 
-		if( $( ":dyn-contextmenu" ).length < 1 ) {
+		if( this._isWindow ) {
 			$( window ).unbind( ns );
 		}
 
