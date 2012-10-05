@@ -17,7 +17,7 @@ h2. changelog for 0.9
 
 h2. clone by copy and paste instruction:
 
-p. git clone ==no--recursive git://github.com/basti1253/jQueryUI-contextmenu.git==
+p. git clone ==--recursive git://github.com/basti1253/jQueryUI-contextmenu.git==
 
 h2. short description
 
