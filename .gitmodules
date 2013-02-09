@@ -1,3 +1,6 @@
 [submodule "lib/jquery-ui"]
 	path = lib/jquery-ui
 	url = https://github.com/jquery/jquery-ui.git
+[submodule "demo"]
+	path = demo
+	url = git://github.com/basti1253/jQueryUI-contextmenu.git

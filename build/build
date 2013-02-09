@@ -1,2 +1,0 @@
-#!/bin/bash
-/usr/share/java/apache-ant/bin/ant build
