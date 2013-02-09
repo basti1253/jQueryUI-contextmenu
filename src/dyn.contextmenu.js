@@ -145,7 +145,6 @@ $.widget( "dyn.contextmenu", {
 			.css( "z-Index", this._zIndex );
 
 		if( ev ) {
-			console.log( ev )
 			ev.stopPropagation();
 			ev.preventDefault();
 
