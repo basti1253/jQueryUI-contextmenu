@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" >
+
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" />
+    <title>contextmenu demo</title>
+
+    <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="src/dyn.contextmenu.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="normalize.css" type="text/css" media="screen">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+    <script type="text/javascript" src="src/dyn.contextmenu.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $( window ).contextmenu({
+                // preinstantiated menu with custom settings - plugin won't reinstantiate menu
+                'menu' : $( "#test" ).menu({ icons: { submenu: "ui-icon-circle-triangle-e" } })
+            });
+            $( '#menudocu' ).contextmenu({
+                'menu' : $( "#documenu" )
+            });
+        });
+    </script>
+
+</head>
+    <div style="width: 100%; height: 100%;">
+        <h1>jQueryUI contextmenu demo</h1>
+        <div id="menudocu">
+            <h2>short description</h2>
+            <p>
+                Provides a simple wrapper for jQueryUI's menu (Please check documentation if you want to learn more on menus events).
+                If you take care yourself about the menu bindings this simple widget doesn't touch your menu layer (right click this layer to show the menus docu link).
+            </p>
+        </div>
+        <div>
+            <h2>options</h2>
+            <ul>
+                <li>pageX / pageY [ default 0 ]
+                    <p>use that if you call open yourself</p>
+                </li>
+                <li><s>forceUrlHandling [ default true ]</s>
+                    <p>
+                        <s>As the menu currently prevents anchor clicks you should keep that activated if you want urls to be loaded. In that case an url has to start with http.</s>
+                    </p>
+                </li>
+                <li>menu [ jQuery object of domnode ]</li>
+                <li>menuOptions [default null; uses defaults if you don't provide anything]</li>
+                <li>position [ position rendering of contextmenu]</li>
+            </ul>
+        </div>
+        <div>
+            <h2>custom events</h2>
+            <ul>
+                <li>before</li>
+                <li>open</li>
+                <li>close</li>
+            </ul>
+        </div>
+        <div>
+            <h2>public methods</h2>
+            <ul>
+                <li>open</li>
+                <li>close</li>
+                <li>closeall</li>
+            </ul>
+        </div>
+    </div>
+    <ul id="test">
+        <li><a href="http://jquery.com">jQuery</a></li>
+        <li><a href="http://jqueryui.com">jQueryUI</a></li>
+        <li><a href="https://github.com/basti1253/jQueryUI-contextmenu">Back to github</a></li>
+        <li>
+            <a href="javascript:;">dummy with submenu items</a>
+            <ul>
+                <li>
+                    <a href="javascript:;">1st dummy item</a>
+                    <a href="javascript:;">2nd dummy item</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul id="documenu">
+        <li><a href="http://api.jqueryui.com/menu/">check out jQueryUI menu documentation</a></li>
+    </ul>
+</body>
+</html>
