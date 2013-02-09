@@ -1,7 +1,7 @@
 /*
  * jQuery UI ContextMenu
  *
- * Copyright 2011, Sebastian Sauer info@dynpages.de
+ * Copyright 2011-2013, Sebastian Sauer info@dynpages.de
  *
  * Dual licensed under the MIT or GPL Version 2 licenses.
  *
@@ -25,6 +25,13 @@
  *
  */
 (function( $ ) {
+
+
+if( $.browser == null ) {
+	$.browser = {
+		msie : /msie/.test(navigator.userAgent.toLowerCase())
+	};
+}
 
 $.widget( "dyn.contextmenu", {
 	/**
@@ -79,7 +86,7 @@ $.widget( "dyn.contextmenu", {
 			.addClass( this.widgetName )
 			.hide();
 
-		if( ! menu.data( "menu" ) ) {
+		if( ! menu.data( "uiMenu" ) ) {
 			menu.menu( o.menuOptions );
 		}
 
@@ -110,6 +117,11 @@ $.widget( "dyn.contextmenu", {
 		this._on( el, {
 			contextmenu : "open"
 		});
+
+		this.menulayer
+			.on( 'contextmenu', function( ev ) {
+				ev.stopPropagation();
+			});
 	},
 	_ui : function () {
 		return {
@@ -133,6 +145,7 @@ $.widget( "dyn.contextmenu", {
 			.css( "z-Index", this._zIndex );
 
 		if( ev ) {
+			ev.stopPropagation();
 			ev.preventDefault();
 
 			posO = $.extend( o.position, {
@@ -208,7 +221,7 @@ $.widget( "dyn.contextmenu", {
 			$( window ).unbind( ns );
 		}
 
-		this._superApply( "destroy", arguments );
+		this._super();
 	}
 });
 
