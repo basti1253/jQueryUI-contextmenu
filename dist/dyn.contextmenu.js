@@ -165,10 +165,9 @@ $.widget( "dyn.contextmenu", {
 	closeAll : function () {
 
 		// explicitly call close for $(window).contextmenu (no pseudo selector catch)
-		var $window = $( window );
-		if( $.isFunction( $window.contextmenu ) ) {
-			$window.contextmenu( "close" );
-		}
+		try {
+			$( window ).contextmenu( "close" );
+		} catch( e ) {}
 
 		$( ":dyn-contextmenu" ).each(function () {
 			$( this ).contextmenu( "close" );
